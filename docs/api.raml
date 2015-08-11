@@ -1,0 +1,96 @@
+#%RAML 0.8
+
+title: BookTrackr API
+baseUri: http://example.api.com/{version}
+version: v1
+
+/books:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "id": 1234567,
+                  "status": "unread",
+                  "title": "The tale of two cities",
+                  "description: "A really long book",
+                  "authors": [
+                    {
+                      "name": "John Ball"
+                    }
+                  ]
+                  "tags": ["fiction","non-fiction"],
+                  "cover": "http://example.com/blah.jpg",
+                  "date_started": "2004-02-12T15:19:21+00:00",
+                  "date_finished": "2004-02-12T15:19:21+00:00"
+                }
+              ]
+            schema: |
+              { "$schema": "http://json-schema.org/schema",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integerß"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "authors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "tags": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "cover": {
+                      "type": "string"
+                    },
+                    "date_started": {
+                      "type": "string"
+                    },
+                    "date_finished": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+
+  put:
+
+  /{bookId}:
+    post:
+      description: Edit the given book.
+      body:
+        application/json:
+
+      responses:
+        200:
+          description: The book was updated.
+        401:
+          description: You need to be logged in in order to update this book.
+        403:
+          description: You don't have access to change the given book.
+        404:
+          description: The given book id does not match to a known book.
+    delete:
