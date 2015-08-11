@@ -21,7 +21,7 @@ version: v1
                     {
                       "name": "John Ball"
                     }
-                  ]
+                  ],
                   "tags": ["fiction","non-fiction"],
                   "cover": "http://example.com/blah.jpg",
                   "date_started": "2004-02-12T15:19:21+00:00",
@@ -29,13 +29,14 @@ version: v1
                 }
               ]
             schema: |
-              { "$schema": "http://json-schema.org/schema",
+              {
+                "$schema": "http://json-schema.org/schema",
                 "type": "array",
                 "items": {
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": "integerß"
+                      "type": "integer"
                     },
                     "status": {
                       "type": "string"
@@ -77,15 +78,155 @@ version: v1
               }
 
   put:
+    body:
+      application/json:
+        example: |
+          {
+            "status": "unread",
+            "title": "The tale of two cities",
+            "description: "A really long book",
+            "authors": [
+              {
+                "name": "John Ball"
+              }
+            ],
+            "tags": ["fiction","non-fiction"],
+            "cover": "http://example.com/blah.jpg",
+            "date_started": "2004-02-12T15:19:21+00:00",
+            "date_finished": "2004-02-12T15:19:21+00:00"
+          }
+
+        schema: |
+          {
+            "$schema": "http://json-schema.org/schema",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "authors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "cover": {
+                "type": "string"
+              },
+              "date_started": {
+                "type": "string"
+              },
+              "date_finished": {
+                "type": "string"
+              }
+            }
+          }
+    responses:
+      201:
+        description: The book was added.
+        body:
+          application/json:
+            example: |
+              {
+                "id": 123456
+              }
+            schema: |
+              {
+                "$schema": "http://json-schema.org/schema",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  }
+                }
+              }
+      401:
+        description: You need to be logged in in order to add a book.
+      403:
+        description: You don't have access to add a new book.
 
   /{bookId}:
     post:
       description: Edit the given book.
       body:
         application/json:
+          example: |
+            {
+              "status": "unread",
+              "title": "The tale of two cities",
+              "description: "A really long book",
+              "authors": [
+                {
+                  "name": "John Ball"
+                }
+              ],
+              "tags": ["fiction","non-fiction"],
+              "cover": "http://example.com/blah.jpg",
+              "date_started": "2004-02-12T15:19:21+00:00",
+              "date_finished": "2004-02-12T15:19:21+00:00"
+            }
+          schema: |
+            {
+              "$schema": "http://json-schema.org/schema",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "authors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "cover": {
+                  "type": "string"
+                },
+                "date_started": {
+                  "type": "string"
+                },
+                "date_finished": {
+                  "type": "string"
+                }
+              }
+            }
 
       responses:
-        200:
+        202:
           description: The book was updated.
         401:
           description: You need to be logged in in order to update this book.
@@ -94,3 +235,331 @@ version: v1
         404:
           description: The given book id does not match to a known book.
     delete:
+      description: Delete the given book.
+      responses:
+        204:
+          description: The book was delete.
+        401:
+          description: You need to be logged in in order to delete this book.
+        403:
+          description: You don't have access to delete the given book.
+        404:
+          description: The given book id does not match to a known book.
+
+    /highlights:
+      get:
+        description: Get all the highlights for the given book.
+        responses:
+          200:
+            description: The highlights for the given book are enclosed.
+            body:
+              application/json:
+                example: |
+                  [
+
+                  ]
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/schema",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+
+                      }
+                    }
+                  }
+          404:
+            description: Cannot pull highlights for unknown book.
+
+      put:
+        description: Add a highlight to the given book
+        body:
+          application/json:
+            example: |
+              {
+
+              }
+            schema: |
+              {
+                "$schema": "http://json-schema.org/schema",
+                "type": "object",
+                "properties": {
+
+                }
+              }
+        responses:
+          201:
+            description: The highlight was added.
+            body:
+              application/json:
+                example: |
+                  {
+                    "id": 123456
+                  }
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/schema",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+          401:
+            description: You need to be logged in in order to add a highlight.
+          403:
+            description: You don't have access to add a new highlight.
+
+      /{highlightId}:
+        delete:
+          description: Delete the given highlight.
+          responses:
+            204:
+              description: The highlight was deleted.
+            401:
+              description: You need to be authenticated in order to delete a highlight.
+            403:
+              description: You are not allowed to delete this highlight.
+            404:
+              description: Cannot find the highlight to delete.
+
+        /comments:
+          get:
+            description: Get all the comments for the given highlight.
+            responses:
+              200:
+                description: The comments for the given highlight are enclosed.
+                body:
+                  application/json:
+                    example: |
+                      {
+
+                      }
+                    schema: |
+                      {
+                        "$schema": "http://json-schema.org/schema",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+
+                          }
+                        }
+                      }
+
+              404:
+                description: Cannot pull comments for unknown highlight.
+          put:
+            description: Add a comment to the given highlight
+            body:
+              application/json:
+                example: |
+                  {
+
+                  }
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/schema",
+                    "type": "object",
+                    "properties": {
+
+                    }
+                  }
+          /{commentId}:
+            delete:
+              description: Delete the given highlight comment.
+              responses:
+                204:
+                  description: The comment was delete.
+                401:
+                  description: You need to be logged in in order to delete this comment.
+                403:
+                  description: You don't have access to delete the given comment.
+                404:
+                  description: The given comment id does not match to a known comment.
+    /reviews:
+      get:
+        description: Get all the reviews for the given book.
+        responses:
+          200:
+            description: The reviews for the given book are enclosed.
+            body:
+              application/json:
+                example: |
+                  {
+
+                  }
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/schema",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+
+                      }
+                    }
+                  }
+          404:
+            description: Cannot pull reviews for unknown book.
+
+      put:
+        description: Add a review to the given book
+        body:
+          application/json:
+            example: |
+              {
+
+              }
+            schema: |
+              {
+                "$schema": "http://json-schema.org/schema",
+                "type": "object",
+                "properties": {
+
+                }
+              }
+        responses:
+          201:
+            description: The review was added.
+            body:
+              application/json:
+                example: |
+                  {
+                    "id": 123456
+                  }
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/schema",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+          401:
+            description: You need to be logged in in order to add a review.
+          403:
+            description: You don't have access to add a new review.
+      /{reviewId}:
+        delete:
+          description: Delete the given review.
+          responses:
+            204:
+              description: the review was deleted.
+            401:
+              description: You need to be authenticated in order to delete a review.
+            403:
+              description: You are not allowed to delete this review.
+            404:
+              description: Cannot find the review to delete.
+
+        /comments:
+          get:
+            description: Get all the comments for the given review.
+            responses:
+              200:
+                description: The comments for the given review are enclosed.
+                body:
+                  application/json:
+                    example: |
+                      [
+
+                      ]
+                    schema: |
+                      {
+                        "$schema": "http://json-schema.org/schema",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+
+                          }
+                        }
+                      }
+              404:
+                description: Cannot pull comments for unknown review.
+          put:
+            description: Add a comment to the given review
+            body:
+              application/json:
+                example: |
+                  {
+
+                  }
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/schema",
+                    "type": "object",
+                    "properties": {
+
+                    }
+                  }
+          /{commentId}:
+            delete:
+              description: Delete the given review comment.
+              responses:
+                204:
+                  description: The comment was delete.
+                401:
+                  description: You need to be logged in in order to delete this comment.
+                403:
+                  description: You don't have access to delete the given comment.
+                404:
+                  description: The given comment id does not match to a known comment.
+    /comments:
+      get:
+        description: Get all the comments for the given book.
+        responses:
+          200:
+            description: The comments for the given book are enclosed.
+            body:
+              application/json:
+                example: |
+                  [
+
+                  ]
+                schema: |
+                  {
+                    "$schema": "http://json-schema.org/schema",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+
+                      }
+                    }
+                  }
+          404:
+            description: Cannot pull comments for unknown book.
+      put:
+        description: Add a comment to the given book
+        body:
+          application/json:
+            example: |
+              {
+
+              }
+            schema: |
+              {
+                "$schema": "http://json-schema.org/schema",
+                "type": "object",
+                "properties": {
+
+                }
+              }
+      /{commentId}:
+        delete:
+          description: Delete the given book comment.
+          responses:
+            204:
+              description: The comment was delete.
+            401:
+              description: You need to be logged in in order to delete this comment.
+            403:
+              description: You don't have access to delete the given comment.
+            404:
+              description: The given comment id does not match to a known comment.
