@@ -464,7 +464,22 @@ version: v1
               application/json:
                 example: |
                   [
-
+                    {
+                      "id": 123,
+                      "author": "Joe Blow",
+                      "author_img": "http://ex.com/img.png",
+                      "body": "This is cool",
+                      "comment_date": "2015-10-23 12:23:45",
+                      "ip_address": "127.0.0.1"
+                    },
+                    {
+                      "id": 124,
+                      "author": "Tim Horton",
+                      "author_img": "http://ex.com/img.png",
+                      "body": "This sucks",
+                      "comment_date": "2015-10-24 12:23:45",
+                      "ip_address": "127.0.0.1"
+                    }
                   ]
                 schema: |
                   {
@@ -473,7 +488,24 @@ version: v1
                     "items": {
                       "type": "object",
                       "properties": {
-
+                        "id": {
+                          "type": "integer"
+                        },
+                        "author": {
+                          "type": "string"
+                        },
+                        "author_img": {
+                          "type": "string"
+                        },
+                        "body": {
+                          "type": "string"
+                        },
+                        "comment_date": {
+                          "type": "datetime"
+                        },
+                        "ip_address": {
+                          "type": "string"
+                        }
                       }
                     }
                   }
@@ -485,14 +517,32 @@ version: v1
           application/json:
             example: |
               {
-
+                "author": "Tim Horton",
+                "author_img": "http://ex.com/img.png",
+                "body": "This sucks",
+                "comment_date": "2015-10-24 12:23:45",
+                "ip_address": "127.0.0.1"
               }
             schema: |
               {
                 "$schema": "http://json-schema.org/schema",
                 "type": "object",
                 "properties": {
-
+                  "author": {
+                    "type": "string"
+                  },
+                  "author_img": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  },
+                  "comment_date": {
+                    "type": "datetime"
+                  },
+                  "ip_address": {
+                    "type": "string"
+                  }
                 }
               }
 

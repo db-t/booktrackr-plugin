@@ -453,21 +453,71 @@
   "items": {
     "type": "object",
     "properties": {
-
+      "id": {
+        "type": "integer"
+      },
+      "author": {
+        "type": "string"
+      },
+      "author_img": {
+        "type": "string"
+      },
+      "body": {
+        "type": "string"
+      },
+      "comment_date": {
+        "type": "datetime"
+      },
+      "ip_address": {
+        "type": "string"
+      }
     }
   }
 }
 </code></pre><p><strong>Example</strong>:</p><pre><code>[
-
+  {
+    "id": 123,
+    "author": "Joe Blow",
+    "author_img": "http://ex.com/img.png",
+    "body": "This is cool",
+    "comment_date": "2015-10-23 12:23:45",
+    "ip_address": "127.0.0.1"
+  },
+  {
+    "id": 124,
+    "author": "Tim Horton",
+    "author_img": "http://ex.com/img.png",
+    "body": "This sucks",
+    "comment_date": "2015-10-24 12:23:45",
+    "ip_address": "127.0.0.1"
+  }
 ]
 </code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Cannot pull comments for unknown book.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_books__bookId__comments_put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/books/{bookId}</span>/comments</h4></div><div class="modal-body"><div class="alert alert-info"><p>Add a comment to the given book</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_books__bookId__comments_put_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_books__bookId__comments_put_request"><h3>URI Parameters</h3><ul><li><strong>bookId</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "properties": {
-
+    "author": {
+      "type": "string"
+    },
+    "author_img": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "comment_date": {
+      "type": "datetime"
+    },
+    "ip_address": {
+      "type": "string"
+    }
   }
 }
 </code></pre><p><strong>Example</strong>:</p><pre><code>{
-
+  "author": "Tim Horton",
+  "author_img": "http://ex.com/img.png",
+  "body": "This sucks",
+  "comment_date": "2015-10-24 12:23:45",
+  "ip_address": "127.0.0.1"
 }
 </code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__books__bookId__comments__commentId_"><span class="parent">/books/{bookId}/comments</span>/{commentId}</a> <span class="methods"><a href="#_books__bookId__comments__commentId__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel__books__bookId__comments__commentId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_books__bookId__comments__commentId__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete the given book comment.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_books__bookId__comments__commentId__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/books/{bookId}/comments</span>/{commentId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete the given book comment.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_books__bookId__comments__commentId__delete_request" data-toggle="tab">Request</a></li><li><a href="#_books__bookId__comments__commentId__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_books__bookId__comments__commentId__delete_request"><h3>URI Parameters</h3><ul><li><strong>bookId</strong>: <em>required (string )</em></li><li><strong>commentId</strong>: <em>required (string )</em></li></ul></div><div class="tab-pane" id="_books__bookId__comments__commentId__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The comment was delete.</p><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>You need to be logged in in order to delete this comment.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>You don&#39;t have access to delete the given comment.</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>The given comment id does not match to a known comment.</p></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_books">/books</a></li></ul></div></div></div></div></body></html>
