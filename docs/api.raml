@@ -337,60 +337,6 @@ version: v1
             404:
               description: Cannot find the highlight to delete.
 
-        /comments:
-          get:
-            description: Get all the comments for the given highlight.
-            responses:
-              200:
-                description: The comments for the given highlight are enclosed.
-                body:
-                  application/json:
-                    example: |
-                      {
-
-                      }
-                    schema: |
-                      {
-                        "$schema": "http://json-schema.org/schema",
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-
-                          }
-                        }
-                      }
-
-              404:
-                description: Cannot pull comments for unknown highlight.
-          put:
-            description: Add a comment to the given highlight
-            body:
-              application/json:
-                example: |
-                  {
-
-                  }
-                schema: |
-                  {
-                    "$schema": "http://json-schema.org/schema",
-                    "type": "object",
-                    "properties": {
-
-                    }
-                  }
-          /{commentId}:
-            delete:
-              description: Delete the given highlight comment.
-              responses:
-                204:
-                  description: The comment was delete.
-                401:
-                  description: You need to be logged in in order to delete this comment.
-                403:
-                  description: You don't have access to delete the given comment.
-                404:
-                  description: The given comment id does not match to a known comment.
     /reviews:
       get:
         description: Get all the reviews for the given book.
@@ -469,59 +415,6 @@ version: v1
             404:
               description: Cannot find the review to delete.
 
-        /comments:
-          get:
-            description: Get all the comments for the given review.
-            responses:
-              200:
-                description: The comments for the given review are enclosed.
-                body:
-                  application/json:
-                    example: |
-                      [
-
-                      ]
-                    schema: |
-                      {
-                        "$schema": "http://json-schema.org/schema",
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-
-                          }
-                        }
-                      }
-              404:
-                description: Cannot pull comments for unknown review.
-          put:
-            description: Add a comment to the given review
-            body:
-              application/json:
-                example: |
-                  {
-
-                  }
-                schema: |
-                  {
-                    "$schema": "http://json-schema.org/schema",
-                    "type": "object",
-                    "properties": {
-
-                    }
-                  }
-          /{commentId}:
-            delete:
-              description: Delete the given review comment.
-              responses:
-                204:
-                  description: The comment was delete.
-                401:
-                  description: You need to be logged in in order to delete this comment.
-                403:
-                  description: You don't have access to delete the given comment.
-                404:
-                  description: The given comment id does not match to a known comment.
     /comments:
       get:
         description: Get all the comments for the given book.
