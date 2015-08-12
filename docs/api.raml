@@ -268,7 +268,16 @@ version: v1
               application/json:
                 example: |
                   [
-
+                    {
+                      "id": 1,
+                      "text": "Some text in the book",
+                      "page": 127
+                    },
+                    {
+                      "id": 2,
+                      "text": "Some other text in the book",
+                      "page": 328
+                    }
                   ]
                 schema: |
                   {
@@ -277,7 +286,12 @@ version: v1
                     "items": {
                       "type": "object",
                       "properties": {
-
+                        "text": {
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        }
                       }
                     }
                   }
@@ -290,7 +304,8 @@ version: v1
           application/json:
             example: |
               {
-
+                "text": "Some text in the book.",
+                "page": 127
               }
             schema: |
               {
@@ -346,9 +361,18 @@ version: v1
             body:
               application/json:
                 example: |
-                  {
-
-                  }
+                  [
+                    {
+                      "id": 1,
+                      "body": "Something awesome",
+                      "rating": 4
+                    },
+                    {
+                      "id": 2,
+                      "body": "Something less awesome",
+                      "rating": 3
+                    }
+                  ]
                 schema: |
                   {
                     "$schema": "http://json-schema.org/schema",
@@ -356,7 +380,15 @@ version: v1
                     "items": {
                       "type": "object",
                       "properties": {
-
+                        "id": {
+                          "type": "integer"
+                        },
+                        "body": {
+                          "type": "string"
+                        },
+                        "rating": {
+                          "type": "integer"
+                        }
                       }
                     }
                   }
@@ -369,14 +401,20 @@ version: v1
           application/json:
             example: |
               {
-
+                "body": "Something awesome",
+                "rating": 4
               }
             schema: |
               {
                 "$schema": "http://json-schema.org/schema",
                 "type": "object",
                 "properties": {
-
+                  "body": {
+                    "type": "string"
+                  },
+                  "rating": {
+                    "type": "integer"
+                  }
                 }
               }
         responses:
@@ -402,6 +440,7 @@ version: v1
             description: You need to be logged in in order to add a review.
           403:
             description: You don't have access to add a new review.
+
       /{reviewId}:
         delete:
           description: Delete the given review.
@@ -456,6 +495,7 @@ version: v1
 
                 }
               }
+
       /{commentId}:
         delete:
           description: Delete the given book comment.

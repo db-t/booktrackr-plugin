@@ -345,12 +345,26 @@
   "items": {
     "type": "object",
     "properties": {
-
+      "text": {
+        "type": "string"
+      },
+      "page": {
+        "type": "integer"
+      }
     }
   }
 }
 </code></pre><p><strong>Example</strong>:</p><pre><code>[
-
+  {
+    "id": 1,
+    "text": "Some text in the book",
+    "page": 127
+  },
+  {
+    "id": 2,
+    "text": "Some other text in the book",
+    "page": 328
+  }
 ]
 </code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Cannot pull highlights for unknown book.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_books__bookId__highlights_put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/books/{bookId}</span>/highlights</h4></div><div class="modal-body"><div class="alert alert-info"><p>Add a highlight to the given book</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_books__bookId__highlights_put_request" data-toggle="tab">Request</a></li><li><a href="#_books__bookId__highlights_put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_books__bookId__highlights_put_request"><h3>URI Parameters</h3><ul><li><strong>bookId</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/schema",
@@ -360,7 +374,8 @@
   }
 }
 </code></pre><p><strong>Example</strong>:</p><pre><code>{
-
+  "text": "Some text in the book.",
+  "page": 127
 }
 </code></pre></div><div class="tab-pane" id="_books__bookId__highlights_put_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>The highlight was added.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/schema",
@@ -380,22 +395,45 @@
   "items": {
     "type": "object",
     "properties": {
-
+      "id": {
+        "type": "integer"
+      },
+      "body": {
+        "type": "string"
+      },
+      "rating": {
+        "type": "integer"
+      }
     }
   }
 }
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-
-}
+</code></pre><p><strong>Example</strong>:</p><pre><code>[
+  {
+    "id": 1,
+    "body": "Something awesome",
+    "rating": 4
+  },
+  {
+    "id": 2,
+    "body": "Something less awesome",
+    "rating": 3
+  }
+]
 </code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Cannot pull reviews for unknown book.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_books__bookId__reviews_put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/books/{bookId}</span>/reviews</h4></div><div class="modal-body"><div class="alert alert-info"><p>Add a review to the given book</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_books__bookId__reviews_put_request" data-toggle="tab">Request</a></li><li><a href="#_books__bookId__reviews_put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_books__bookId__reviews_put_request"><h3>URI Parameters</h3><ul><li><strong>bookId</strong>: <em>required (string )</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "properties": {
-
+    "body": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer"
+    }
   }
 }
 </code></pre><p><strong>Example</strong>:</p><pre><code>{
-
+  "body": "Something awesome",
+  "rating": 4
 }
 </code></pre></div><div class="tab-pane" id="_books__bookId__reviews_put_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>The review was added.</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/schema",
