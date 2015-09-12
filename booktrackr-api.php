@@ -19,9 +19,11 @@ if ( ! defined( 'JSON_API_VERSION' ) ) {
 	error_log( 'BookTrackr API requires the REST JSON API plugin be loaded.', E_ERROR );
 }
 
-// Fix the fact that Magic quotes is on by default and BREAKS THE FREAKING OAUTH PLUGIN. WTF.
+
+
+// Load the book controller on init, to make sure that the wp-api plugin is loaded already.
 add_action('init', function() {
-	$_GET = stripslashes_deep( $_GET );
+	require_once 'class-wp-rest-books-controller.php';
 });
 
 register_post_type( 'book', array(
@@ -38,7 +40,7 @@ register_post_type( 'book', array(
 	'delete_with_user' => true,
 	'show_in_rest' => true,
 	'rest_base' => 'books',
-	'rest_controller_class' => 'WP_REST_Posts_Controller',
+	'rest_controller_class' => 'WP_REST_Books_Controller',
 	'supports' => array( 'title', 'comments', 'editor', 'featured_image' ),
 ) );
 
@@ -52,3 +54,4 @@ add_filter( 'rest_pre_serve_request', function() {
 		header( "Access-Control-Allow-Headers: Authorization,Content-Type" );
 	}
 }, 20); // We use a 20 so that this overrides the origin in the wp-api plugin which only works against self.
+
