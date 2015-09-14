@@ -24,6 +24,9 @@ if ( ! defined( 'JSON_API_VERSION' ) ) {
 // Load the book controller on init, to make sure that the wp-api plugin is loaded already.
 add_action('init', function() {
 	require_once 'class-wp-rest-books-controller.php';
+
+	$_GET = stripslashes_deep( $_GET );
+	$_POST = stripslashes_deep( $_POST );
 });
 
 register_post_type( 'book', array(
@@ -51,7 +54,7 @@ register_post_type( 'book', array(
 add_filter( 'rest_pre_serve_request', function() {
 	if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 		header( "Access-Control-Allow-Origin: *" );
-		header( "Access-Control-Allow-Headers: Authorization,Content-Type" );
+		header( "Access-Control-Allow-Headers: Authorization,Content-Type,Content-Disposition" );
 	}
 }, 20); // We use a 20 so that this overrides the origin in the wp-api plugin which only works against self.
 
