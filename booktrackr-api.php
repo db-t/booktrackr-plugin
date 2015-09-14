@@ -44,7 +44,7 @@ register_post_type( 'book', array(
 	'show_in_rest' => true,
 	'rest_base' => 'books',
 	'rest_controller_class' => 'WP_REST_Books_Controller',
-	'supports' => array( 'title', 'comments', 'editor', 'featured_image' ),
+	'supports' => array( 'title', 'comments', 'editor', 'thumbnail' ),
 ) );
 
 // Make sure cross origin requests are allowed.
