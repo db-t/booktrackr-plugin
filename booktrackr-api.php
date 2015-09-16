@@ -48,6 +48,16 @@ register_post_type( 'book', array(
 	'supports' => array( 'title', 'comments', 'editor', 'thumbnail', 'custom-fields' ),
 ) );
 
+register_taxonomy( 'post_tag', 'book', array(
+	'hierarchical' => false,
+	'query_var' => 'tag',
+	'rewrite' => false,
+	'public' => true,
+	'show_ui' => false,
+	'show_admin_column' => false,
+	'show_in_rest' => true,
+) );
+
 // Make sure cross origin requests are allowed.
 // this is more insecure than you would typically use
 // in a production environment.
