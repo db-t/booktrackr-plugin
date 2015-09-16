@@ -56,6 +56,8 @@ register_taxonomy( 'post_tag', 'book', array(
 	'show_ui' => false,
 	'show_admin_column' => false,
 	'show_in_rest' => true,
+	'rest_base' => 'tag',
+	'rest_controller_class' => 'WP_REST_Terms_Controller',
 ) );
 
 // Make sure cross origin requests are allowed.
