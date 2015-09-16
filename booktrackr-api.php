@@ -48,17 +48,7 @@ register_post_type( 'book', array(
 	'supports' => array( 'title', 'comments', 'editor', 'thumbnail', 'custom-fields' ),
 ) );
 
-register_taxonomy( 'post_tag', 'book', array(
-	'hierarchical' => false,
-	'query_var' => 'tag',
-	'rewrite' => false,
-	'public' => true,
-	'show_ui' => false,
-	'show_admin_column' => false,
-	'show_in_rest' => true,
-	'rest_base' => 'tag',
-	'rest_controller_class' => 'WP_REST_Terms_Controller',
-) );
+register_taxonomy_for_object_type( 'post_tag', 'book' );
 
 // Make sure cross origin requests are allowed.
 // this is more insecure than you would typically use
