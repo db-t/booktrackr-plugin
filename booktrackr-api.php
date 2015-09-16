@@ -38,7 +38,7 @@ register_post_type( 'book', array(
 	'capability_type' => 'post',
 	'map_meta_cap' => true,
 	'hierarchical' => false,
-	'taxonomies' => array('tag'),
+	'taxonomies' => array('post_tag'),
 	'rewrite' => false,
 	'query_var' => false,
 	'delete_with_user' => true,
