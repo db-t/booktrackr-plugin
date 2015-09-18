@@ -60,6 +60,33 @@ register_taxonomy( 'genre', 'book', array(
 	'rest_controller_class' => 'WP_REST_Terms_Controller',
 ) );
 
+
+// Install the default terms.
+register_activation_hook( __FILE__, function() {
+	$genreTerms = array(
+		'fiction' => 'Fiction',
+		'nonfiction' => 'Non-Fiction',
+		'drama' => 'Drama',
+		'comedy' => 'Comedy',
+		'romance' => 'Romance',
+		'science-fiction' => 'Science Fiction',
+		'fantasy' => 'Fantasy',
+		'mystery' => 'Mystery',
+		'horror' => 'Horror',
+		'western' => 'Western',
+		'graphic-novel ' => 'Graphic Novel',
+		'suspensethriller' => 'Suspense/Thriller',
+		'biography' => 'Biography',
+	);
+
+	foreach ( $genreTerms as $slug => $name ) {
+		if ( ! term_exists( $name, 'genre' ) ) {
+			wp_insert_term( $name, 'genre' );
+		}
+	}
+});
+
+
 // Make sure cross origin requests are allowed.
 // this is more insecure than you would typically use
 // in a production environment.
