@@ -19,15 +19,21 @@ if ( ! defined( 'JSON_API_VERSION' ) ) {
 	error_log( 'BookTrackr API requires the REST JSON API plugin be loaded.', E_ERROR );
 }
 
-
-
-// Load the book controller on init, to make sure that the wp-api plugin is loaded already.
-add_action('init', function() {
+add_action( 'init', function() {
+	// Load the controllers on init, to make sure that the wp-api plugin is loaded already.
 	require_once 'class-wp-rest-books-controller.php';
+	require_once 'class-wp-rest-meta-books-controller.php';
 
 	$_GET = stripslashes_deep( $_GET );
 	$_POST = stripslashes_deep( $_POST );
-});
+} );
+
+add_action( 'rest_api_init', function() {
+
+	// Let's turn on the meta override controller for books, to make sure they load properly.
+	$meta_controller = new WP_REST_Meta_Books_Controller( 'book' );
+	$meta_controller->register_routes();
+}, -1 );
 
 register_post_type( 'book', array(
 	'labels' => array(
@@ -38,14 +44,14 @@ register_post_type( 'book', array(
 	'capability_type' => 'post',
 	'map_meta_cap' => true,
 	'hierarchical' => false,
-	'taxonomies' => array('post_tag'),
+	'taxonomies' => array( 'post_tag' ),
 	'rewrite' => false,
 	'query_var' => false,
 	'delete_with_user' => true,
 	'show_in_rest' => true,
 	'rest_base' => 'books',
 	'rest_controller_class' => 'WP_REST_Books_Controller',
-	'supports' => array( 'title', 'comments', 'editor', 'thumbnail', 'custom-fields' ),
+	'supports' => array( 'title', 'comments', 'editor', 'thumbnail' ),
 ) );
 
 register_taxonomy( 'genre', 'book', array(
